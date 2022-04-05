@@ -7,10 +7,6 @@
     </button>
 </div>
 
-<!-- COOKIES Style e JS Link -->
-<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.css">
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top">
   <div class="container-fluid">
@@ -20,6 +16,47 @@
     <button class="m-2 btn text-light shadow-none hover-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-list text-light"></i>MENU</button>
   </div>
 </nav>
+
+<!-- Whatsapp Form -->
+<div class="modal fade" id="whatsappform" tabindex="-1" aria-labelledby="whatsappform" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+			<form method="post" action="#" id="box-form-cont-whats" name="formContato" class="p-md-5 border rounded-3 bg-light p-4">
+			    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+				<h3 class="text-center fs-2 cor-wpp"><i class="bi bi-whatsapp"></i> FALE CONOSCO</h3>
+				<h4 class="text-center fs-6">Preencha os dados para conversar:</h4>
+          
+                <input type="hidden" name="url_origem" value="<?php echo $urlSite; ?>" />
+				<input type="hidden" name="id_empresa" value="<?php echo $idEmpresaDestino; ?>" />
+				<input type="hidden" name="id_empreendimento" value="<?php echo $codigoImovel; ?>" />
+				<input type="hidden" name="tipo_origem" value="3" />
+				<input type="hidden" name="id_outra_origem" value="5" />
+				<!--Internet-->
+				<input type="hidden" name="id_detalhe_outra_origem" value="<?php echo $idOrigem; ?>" />
+				<!--SITE DA EMPRESA-->
+				<input type="hidden" name="tipo_de_interesse" value="0" />
+				<input type="hidden" name="idAcao" value="<?php echo $idAcao; ?>" />
+				<input type="hidden" name="mensagem" id="mensagem" value="Quero ter mais informações." />
+
+        <div class="form-floating mb-3">
+            <input type="text" name="nome_contato" id="contatoNome" required class="form-control shadow-none" <?php if(isset($_COOKIE['nomeContato'])) { ?>value="<?php echo $_COOKIE['nomeContato']; ?>"<?php } ?> placeholder="Nome">
+            <label for="contatoNome">Nome</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" name="email" id="contatoEmail" required class="form-control shadow-none" <?php if(isset($_COOKIE['emailContato'])) { ?>value="<?php echo $_COOKIE['emailContato']; ?>"<?php } ?> pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="nome@exemplo.com">
+            <label for="contatoEmail">E-mail</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="tel" name="telefone" id="contatoTelefone" required class="telefone form-control shadow-none" <?php if(isset($_COOKIE['telefoneContato'])) { ?>value="<?php echo $_COOKIE['telefoneContato']; ?>"<?php } ?> placeholder="(00)0000-0000" maxlength="15">
+            <label for="contatoTelefone">Telefone</label>
+          </div>
+          <button class="w-100 btn btn-lg btn-dark bg-wpp" type="submit" name="submit">Falar agora <i class="bi bi-chat-dots"></i></button>
+          <hr class="my-4">
+          <small class="text-muted"><i class="bi bi-lock"></i> Garantimos a privacidade de seus dados</small>
+        </form>
+    </div>
+  </div>
+</div>
 
 <!-- Topo -->
 <main class="background">
@@ -33,7 +70,7 @@
   <div class="offcanvas-body">
       <a class="btn cor-fonte shadow-none hover-btn" href="#home" role="button">HOME</a><br>
       <a class="btn cor-fonte shadow-none hover-btn" href="#vantagens" role="button">VANTAGENS</a><br>
-      <a class="btn cor-fonte shadow-none hover-btn" href="#carouselExampleIndicators" role="button">GALERIA</a><br>
+      <a class="btn cor-fonte shadow-none hover-btn" href="#galeria" role="button">GALERIA</a><br>
       <a class="btn cor-fonte shadow-none hover-btn" href="#diferenciais" role="button">DIFERENCIAIS</a><br>
       <a class="btn cor-fonte shadow-none hover-btn" href="#localizacao" role="button">LOCALIZAÇÃO</a><br>
       <a class="btn cor-fonte shadow-none hover-btn" href="#depoimentos" role="button">DEPOIMENTOS</a><br>
@@ -59,7 +96,7 @@
           </div>
         <div>
         <form method="post" action="#" id="box-form-cont" name="formContato" class="p-4 p-md-5">
-        <input type="hidden" name="url_origem" value="<?php echo $urlSite; ?>" />
+                <input type="hidden" name="url_origem" value="<?php echo $urlSite; ?>" />
 				<input type="hidden" name="id_empresa" value="<?php echo $idEmpresaDestino; ?>" />
 				<input type="hidden" name="id_empreendimento" value="<?php echo $codigoImovel; ?>" />
 				<input type="hidden" name="tipo_origem" value="3" />
@@ -73,15 +110,15 @@
 
         <div class="form-floating mb-3">
             <input type="text" name="nome_contato" id="contatoNome" required class="bg-primaria form-control shadow-none" <?php if(isset($_COOKIE['nomeContato'])) { ?>value="<?php echo $_COOKIE['nomeContato']; ?>"<?php } ?> style="color: white;" placeholder="Nome">
-            <label class="cor-fonte" for="name">Nome</label>
+            <label class="cor-fonte" for="contatoNome">Nome</label>
           </div>
           <div class="form-floating mb-3">
             <input type="text" name="email" id="contatoEmail" required class="bg-primaria form-control shadow-none" <?php if(isset($_COOKIE['emailContato'])) { ?>value="<?php echo $_COOKIE['emailContato']; ?>"<?php } ?> pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" style="color: white;" placeholder="nome@exemplo.com">
-            <label class="cor-fonte" for="email">E-mail</label>
+            <label class="cor-fonte" for="contatoEmail">E-mail</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="tel" name="telefone" id="contatoTelefone" required class="bg-primaria telefone form-control shadow-none" <?php if(isset($_COOKIE['telefoneContato'])) { ?>value="<?php echo $_COOKIE['telefoneContato']; ?>"<?php } ?> style="color: white;" placeholder="(00)0000-0000">
-            <label class="cor-fonte" for="fone">Telefone</label>
+            <input type="tel" name="telefone" id="contatoTelefone" required class="telefone bg-primaria form-control shadow-none" <?php if(isset($_COOKIE['telefoneContato'])) { ?>value="<?php echo $_COOKIE['telefoneContato']; ?>"<?php } ?> style="color: white;" placeholder="(00)0000-0000" maxlength="15">
+            <label for="contatoTelefone" class="cor-fonte">Telefone</label>
           </div>
           <button class="color-3 w-100 btn fw-bold shadow-none hover-btn" type="submit" name="submit">QUERO MAIS INFORMAÇÕES</button>
         </form>
@@ -108,97 +145,43 @@
 </div>
 
   <!-- Galeria -->
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7" aria-label="Slide 8"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="8" aria-label="Slide 9"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="9" aria-label="Slide 10"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="10" aria-label="Slide 11"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="11" aria-label="Slide 12"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="12" aria-label="Slide 13"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="13" aria-label="Slide 14"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="14" aria-label="Slide 15"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="15" aria-label="Slide 16"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="16" aria-label="Slide 17"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="17" aria-label="Slide 18"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="18" aria-label="Slide 19"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="19" aria-label="Slide 20"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="imagens/fotos/01.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/02.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/03.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/04.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/05.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/06.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/07.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/08.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/09.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/10.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/11.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/12.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/13.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/14.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/15.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/16.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/17.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/18.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/19.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-    <div class="carousel-item">
-      <img src="imagens/fotos/20.webp" class="lazyload d-block w-100" alt="foto">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
+  <div id="galeria" class="galeria">
+  <amp-carousel type="slides"
+  width="450"
+  height="300"
+  layout="responsive"
+  controls
+  loop
+  autoplay
+  delay="3000"  data-next-button-aria-label="Go to next slide"
+  data-previous-button-aria-label="Go to previous slide"
+  role="region"
+  aria-label="Looping carousel">
+  <amp-img src="imagens/fotos/01.webp"
+    width="100%"
+    height="300"></amp-img>
+  <amp-img src="imagens/fotos/02.webp"
+    width="100%"
+    height="300"></amp-img>
+  <amp-img src="imagens/fotos/03.webp"
+    width="100%"
+    height="300"></amp-img>
+  <amp-img src="imagens/fotos/04.webp"
+    width="100%"
+    height="300"></amp-img>
+  <amp-img src="imagens/fotos/05.webp"
+    width="100%"
+    height="300"></amp-img>
+  <amp-img src="imagens/fotos/06.webp"
+    width="100%"
+    height="300"></amp-img>
+  <amp-img src="imagens/fotos/07.webp"
+    width="100%"
+    height="300"></amp-img>
+  <amp-img src="imagens/fotos/08.webp"
+    width="100%"
+    height="300"></amp-img>
+</amp-carousel>
 </div>
 
 <!-- Conteúdo -->
@@ -225,53 +208,22 @@
 
 <!-- Depoimentos -->
 <div id="depoimentos" class="container col-xl-10 col-xxl-8 px-4 py-5 depoimentos">
-    <h2 class="mb-3 cor-primaria">DEPOIMENTOS</h2>
-<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="00" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="01" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="02" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="03" aria-label="Slide 4"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="10000">
-      <iframe class="d-block w-100" width="854" height="480" src="https://www.youtube.com/embed/f6zfxRzlaPI" title="DEPOIMENTO" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <div class="carousel-caption d-none d-md-block">
-        <h5 class="text-white bg-primaria mb-0">DEPOIMENTO - Danilo Canuto</h5>
-        <p class="text-white bg-terciaria">Danilo Canuto, presidente da Revpar Incorporações, fala sobre a sofisticação, tecnologia e valorização que o Motto Recife vai trazer para a cidade.</p>
-      </div>
-    </div>
-    <div class="carousel-item" data-bs-interval="2000">
-      <iframe class="d-block w-100" width="854" height="480" src="https://www.youtube.com/embed/tZMzzgLVQio" title="DEPOIMENTO" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <div class="carousel-caption d-none d-md-block">
-        <h5 class="text-white bg-primaria mb-0">DEPOIMENTO - Juliano Dubeux</h5>
-        <p class="text-white bg-terciaria">O arquiteto Juliano Dubeux fala sobre o projeto que une tecnologia e valores da personalidade pernambucana</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <iframe class="d-block w-100" width="854" height="480" src="https://www.youtube.com/embed/EUZU-cxmDo0" title="DEPOIMENTO" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <div class="carousel-caption d-none d-md-block">
-        <h5 class="text-white bg-primaria mb-0">DEPOIMENTO - João Domingos</h5>
-        <p class="text-white bg-terciaria">João Domingos, da Muv Empreendimentos, fala sobre o lugar estratégico no qual o Motto by Hilton Recife será construído.</p>
-      </div>
-    </div>
-        <div class="carousel-item">
-      <iframe class="d-block w-100" width="854" height="480" src="https://www.youtube.com/embed/GpEcgpmjb1s" title="DEPOIMENTO" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <div class="carousel-caption d-none d-md-block">
-        <h5 class="text-white bg-primaria mb-0">DEPOIMENTO - Rafael Souto Maior</h5>
-        <p class="text-white bg-terciaria">O arquiteto Rafael Souto Maior, da Metro Arquitetura, fala sobre o desafio de fundir o local e o internacional no projeto.</p>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Anterior</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Próximo</span>
-  </button>
-</div>
+    
+  <amp-carousel type="slides"
+  width="450"
+  height="300"
+  layout="responsive"
+  controls
+  delay="3000"  data-next-button-aria-label="Go to next slide"
+  data-previous-button-aria-label="Go to previous slide"
+  role="region"
+  aria-label="Looping carousel">
+  <amp-youtube width="450" height="300" layout="responsive" data-videoid="f6zfxRzlaPI"></amp-youtube>
+  <amp-youtube width="450" height="300" layout="responsive" data-videoid="tZMzzgLVQio"></amp-youtube>
+  <amp-youtube width="450" height="300" layout="responsive" data-videoid="EUZU-cxmDo0"></amp-youtube>
+  <amp-youtube width="450" height="300" layout="responsive" data-videoid="GpEcgpmjb1s"></amp-youtube>
+</amp-carousel>
+
 </div>
 
 </main>
@@ -292,50 +244,3 @@
     </div>
   </div>
 </footer>
-
-<!-- Form Whatsapp -->
-<div class="centerFormWhats">
-	<div class="geralFormWhats" style="margin-top:100px;">
-		<div class="formTopLeadBottomWhats" style="background-color:white;border-radius:10px;" id="formBottom">
-			<div class="fecharJan" style="width:25px;padding:5px;margin:10px;"> <a href="javascript:void(0);"><i class="cor-wpp bi bi-x-circle-fill"></i></a> </div>
-			<div class="mensagemFormBotWhats">Carregando...</div>
-			<form method="post" action="#" id="box-form-cont-whats" name="formContato" class=" p-md-5 border rounded-3 bg-light p-4">
-				<h3 class="text-center fs-2 cor-wpp"><i class="bi bi-whatsapp"></i> FALE CONOSCO</h3>
-				<h4 class="text-center fs-6">Preencha os dados para conversar:</h4>
-          
-        <input type="hidden" name="url_origem" value="<?php echo $urlSite; ?>" />
-				<input type="hidden" name="id_empresa" value="<?php echo $idEmpresaDestino; ?>" />
-				<input type="hidden" name="id_empreendimento" value="<?php echo $codigoImovel; ?>" />
-				<input type="hidden" name="tipo_origem" value="3" />
-				<input type="hidden" name="id_outra_origem" value="5" />
-				<!--Internet-->
-				<input type="hidden" name="id_detalhe_outra_origem" value="<?php echo $idOrigem; ?>" />
-				<!--SITE DA EMPRESA-->
-				<input type="hidden" name="tipo_de_interesse" value="0" />
-				<input type="hidden" name="idAcao" value="<?php echo $idAcao; ?>" />
-				<input type="hidden" name="mensagem" id="mensagem" value="Quero ter mais informações." />
-
-        <div class="form-floating mb-3">
-            <input type="text" name="nome_contato" id="contatoNome" required class="form-control shadow-none" <?php if(isset($_COOKIE['nomeContato'])) { ?>value="<?php echo $_COOKIE['nomeContato']; ?>"<?php } ?> placeholder="Nome">
-            <label for="name">Nome</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="text" name="email" id="contatoEmail" required class="form-control shadow-none" <?php if(isset($_COOKIE['emailContato'])) { ?>value="<?php echo $_COOKIE['emailContato']; ?>"<?php } ?> pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="nome@exemplo.com">
-            <label for="email">E-mail</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="tel" name="telefone" id="contatoTelefone" required class="telefone form-control shadow-none" <?php if(isset($_COOKIE['telefoneContato'])) { ?>value="<?php echo $_COOKIE['telefoneContato']; ?>"<?php } ?> placeholder="(00)0000-0000">
-            <label for="fone">Telefone</label>
-          </div>
-          <button class="w-100 btn btn-lg btn-dark bg-wpp" type="submit" name="submit">Falar agora <i class="bi bi-chat-dots"></i></button>
-          <hr class="my-4">
-          <small class="text-muted"><i class="bi bi-lock"></i> Garantimos a privacidade de seus dados</small>
-        </form>
-        </div>
-<!-- end formTopLeadBottom -->
-</div>
-<!-- end geralFormBottomIn -->
-</div>
-<!-- end centerFormWhats -->
-</div>
-<!--END Whatsapp -->

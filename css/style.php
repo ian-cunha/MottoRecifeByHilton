@@ -44,6 +44,11 @@
     }
 }
 
+.galeria {
+    margin-top: -72px;
+    margin-bottom: -72px;
+}
+
 .material-x {
     background-color: <?php echo $colorTerciaria ?>;
     margin: 100px;
@@ -61,9 +66,6 @@ bg-1 {
 .depoimentos {
 	margin: auto;
 	text-align: center;
-	background-color:<?php echo $colorFonte ?>;
-	min-width: 100%;
-    min-height: 100%;
 }
 
 .cor-1 {
